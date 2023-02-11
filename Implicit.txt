@@ -1,0 +1,73 @@
+IMPLICIT:
+package com.example.implicit;
+import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+public class MainActivity extends AppCompatActivity {
+    EditText text;
+    Button btn;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        text=findViewById(R.id.text);
+        btn=findViewById(R.id.btn);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri myUri= Uri.parse("tel:"+text.getText().toString());
+                Intent it=new Intent(Intent.ACTION_DIAL,myUri);
+                startActivity(it);
+            }
+        });
+    }
+}
+
+XML:
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="#0E0D0D"
+android:orientation="vertical"
+tools:context=".MainActivity">
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
+    android:layout_marginBottom="15dp"
+    android:gravity="center"
+    android:text="IMPLICIT"
+    android:textColor="#DACFAE"
+    android:textSize="40dp" />
+<EditText
+    android:id="@+id/text"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="20dp"
+    android:layout_marginTop="200dp"
+    android:layout_marginRight="20dp"
+    android:background="@color/white"
+    android:gravity="center"
+    android:hint="enter your number here"
+    android:textColor="#B65A53"
+    android:textSize="30dp"
+    android:textStyle="italic" />
+<Button
+    android:id="@+id/btn"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="35dp"
+    android:text="CALL"
+    android:textSize="30dp" />
+
+</LinearLayout>
+
+
